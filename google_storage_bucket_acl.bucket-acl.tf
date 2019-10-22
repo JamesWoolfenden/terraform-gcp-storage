@@ -3,4 +3,3 @@ resource "google_storage_bucket_acl" "bucketacl" {
 
   predefined_acl = "private"
 }
-
