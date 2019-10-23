@@ -11,12 +11,12 @@ I had to first create a test repo from the charts folder
 helm serve --repo-path ./charts
 ```
 
-This gave me a sample index.yaml, which I added as part of the repo creation process [its in the template fodler for the example].
+This gave me a sample **index.yaml**, which I added as part of the repo creation process [it's in the template folder for the example].
 
 I now have a public helm repo.
 https://helm-repo-examplea.storage.googleapis.com/
 
-This has a mininal **index.yaml**
+This example has a mininal **index.yaml**
 
 ## Adding the repo to your Helm
 
@@ -40,7 +40,8 @@ Add **module.storage.tf** to your code:-
 
 ```terraform
 module "storage" {
-  source  = "../../"
+  source      = "JamesWoolfenden/storage/gcp"
+  version     = "0.2.3"
   binding     = var.binding
   bucket_name = var.bucket_name
   project     = var.project
@@ -50,7 +51,7 @@ module "storage" {
 
 ## Permissions
 
-I got this error when I was making this project, your service acccount will need the permissions, I added Cloud Storage Admin.
+This being GCP you'll get this error when was making this project, your service acccount will need these permissions, Included in the "Cloud Storage Admin" role.
 
 ```error
  examplea@examplea.iam.gserviceaccount.com does not have storage.buckets.create access to project XXXXXX, forbidden
