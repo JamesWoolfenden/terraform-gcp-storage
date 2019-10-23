@@ -3,6 +3,36 @@
 # terraform-gcp-storage [![Build Status](https://api.travis-ci.com/JamesWoolfenden/terraform-gcp-storage.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-gcp-storage) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-storage.svg)](https://github.com/JamesWoolfenden/terraform-gcp-storage/releases/latest)
 
 Creates a GCP storage account.
+I created this  module intially to help with making a helm repo.
+
+I had to first create a test repo from the charts folder
+
+```cli
+helm serve --repo-path ./charts
+```
+
+This gave me a sample index.yaml, which I added as part of the repo creation process [its in the template fodler for the example].
+
+I now have a public helm repo.
+https://helm-repo-examplea.storage.googleapis.com/
+
+This has a mininal **index.yaml**
+
+## Adding the repo to your Helm
+
+```cli
+helm repo add baby-steps https://helm-repo-examplea.storage.googleapis.com/
+"baby-steps" has been added to your repositories
+```
+
+Verify:
+
+```cli
+$helm repo list
+NAME            URL
+stable          https://kubernetes-charts.storage.googleapis.com
+baby-steps      https://helm-repo-examplea.storage.googleapis.com/
+```
 
 ## Usage
 
@@ -11,8 +41,19 @@ Add **module.storage.tf** to your code:-
 ```terraform
 module "storage" {
   source  = "../../"
-
+  binding     = var.binding
+  bucket_name = var.bucket_name
+  project     = var.project
+  location    = var.location
 }
+```
+
+## Permissions
+
+I got this error when I was making this project, your service acccount will need the permissions, I added Cloud Storage Admin.
+
+```error
+ examplea@examplea.iam.gserviceaccount.com does not have storage.buckets.create access to project XXXXXX, forbidden
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
