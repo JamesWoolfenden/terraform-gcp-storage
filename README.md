@@ -62,6 +62,7 @@ This being GCP you'll get this error when was making this project, your service 
 
 | Name | Description |
 |------|-------------|
+| bucket | All the bucket info |
 | url | The Url of the statebucket |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
