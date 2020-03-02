@@ -58,6 +58,26 @@ This being GCP you'll get this error when was making this project, your service 
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:-----:|
+| acl | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
+| binding | The Bindings to be applied to the bucket | `any` | n/a | yes |
+| bucket\_name | The name of the bucket | `string` | n/a | yes |
+| common\_tags | This is to help you add tags to your cloud objects | `map` | n/a | yes |
+| kms\_key | Which key to encrypt with | `string` | `""` | no |
+| location | Where the bucket is | `string` | `"US"` | no |
+| predefined\_acl | n/a | `string` | `"private"` | no |
+| project | The GCP projec name | `string` | n/a | yes |
+| versioning | n/a | `map` | <pre>{<br>  "enabled": true<br>}<br></pre> | no |
+
 ## Outputs
 
 | Name | Description |
