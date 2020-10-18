@@ -1,7 +1,12 @@
-# terraform-gcp-storage [![Build Status](https://api.travis-ci.com/JamesWoolfenden/terraform-gcp-storage.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-gcp-storage) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-storage.svg)](https://github.com/JamesWoolfenden/terraform-gcp-storage/releases/latest)
+# terraform-gcp-storage
 
-Creates a GCP storage account.
-I created this module intially to help with making a helm repo.
+[![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-storageterraform-gcp-storage.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-storage) 
+[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-storage.svg)](https://github.com/JamesWoolfenden/terraform-gcp-storage/releases/latest)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![checkov](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
+
+This creates a GCP storage account.
+I created this module initially to help with making a helm repo.
 
 I had to first create a test repo from the charts folder
 
@@ -14,7 +19,7 @@ This gave me a sample **index.yaml**, which I added as part of the repo creation
 I now have a public helm repo.
 https://helm-repo-examplea.storage.googleapis.com/
 
-This example has a mininal **index.yaml**
+This example has a minimal **index.yaml**
 
 ## Adding the repo to your Helm
 
@@ -49,7 +54,7 @@ module "storage" {
 
 ## Permissions
 
-This being GCP you'll get this error when was making this project, your service acccount will need these permissions, Included in the "Cloud Storage Admin" role.
+This being GCP you'll get this error when was making this project, your service account will need these permissions, Included in the "Cloud Storage Admin" role.
 
 ```error
  examplea@examplea.iam.gserviceaccount.com does not have storage.buckets.create access to project XXXXXX, forbidden
@@ -109,7 +114,7 @@ Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-
 
 ## Copyrights
 
-Copyright � 2019-2019 James Woolfenden
+Copyright © 2019-2020 James Woolfenden
 
 ## License
 
@@ -140,8 +145,6 @@ under the License.
 
 [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
-[logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
-[website]: https://slalom.com
 [github]: https://github.com/jameswoolfenden
 [linkedin]: https://www.linkedin.com/in/jameswoolfenden/
 [twitter]: https://twitter.com/JimWoolfenden

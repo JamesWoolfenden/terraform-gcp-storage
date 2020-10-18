@@ -10,10 +10,11 @@ resource "google_storage_bucket" "bucket" {
   encryption {
     default_kms_key_name = var.kms_key
   }
-  uniform_bucket_level_access {
-    bucket_policy_only = true
-  }
+
+  uniform_bucket_level_access = true
+
 }
+
 variable "kms_key" {
   description = "Which key to encrypt with"
   type        = string
