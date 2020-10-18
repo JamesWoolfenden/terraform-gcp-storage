@@ -56,6 +56,10 @@ This being GCP you'll get this error when was making this project, your service 
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -65,7 +69,7 @@ This being GCP you'll get this error when was making this project, your service 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | acl | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
 | binding | The Bindings to be applied to the bucket | `any` | n/a | yes |
 | bucket\_name | The name of the bucket | `string` | n/a | yes |
@@ -74,14 +78,14 @@ This being GCP you'll get this error when was making this project, your service 
 | location | Where the bucket is | `string` | `"US"` | no |
 | predefined\_acl | n/a | `string` | `"private"` | no |
 | project | The GCP projec name | `string` | n/a | yes |
-| versioning | n/a | `map` | <pre>{<br>  "enabled": true<br>}<br></pre> | no |
+| versioning | n/a | `map` | <pre>{<br>  "enabled": true<br>}</pre> | no |
 
 ## Outputs
 
-| Name   | Description                |
-| ------ | -------------------------- |
-| bucket | All the bucket info        |
-| url    | The Url of the statebucket |
+| Name | Description |
+|------|-------------|
+| bucket | All the bucket info |
+| url | The Url of the statebucket |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
