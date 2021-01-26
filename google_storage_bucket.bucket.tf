@@ -3,6 +3,8 @@ resource "google_storage_bucket" "bucket" {
   location = var.location
   project  = var.project
 
+  force_destroy = var.force_destroy
+
   versioning {
     enabled = var.versioning["enabled"]
   }
@@ -13,11 +15,4 @@ resource "google_storage_bucket" "bucket" {
 
   uniform_bucket_level_access = true
 
-}
-
-variable "kms_key" {
-  description = "Which key to encrypt with"
-  type        = string
-
-  default = ""
 }

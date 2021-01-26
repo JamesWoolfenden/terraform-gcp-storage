@@ -80,12 +80,13 @@ No requirements.
 | acl | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
 | binding | The Bindings to be applied to the bucket | `any` | n/a | yes |
 | bucket\_name | The name of the bucket | `string` | n/a | yes |
-| common\_tags | This is to help you add tags to your cloud objects | `map` | n/a | yes |
+| common\_tags | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
+| force\_destroy | Flag to set to destroy buckets with content | `bool` | `false` | no |
 | kms\_key | Which key to encrypt with | `string` | `""` | no |
 | location | Where the bucket is | `string` | `"US"` | no |
 | predefined\_acl | n/a | `string` | `"private"` | no |
 | project | The GCP projec name | `string` | n/a | yes |
-| versioning | n/a | `map` | <pre>{<br>  "enabled": true<br>}</pre> | no |
+| versioning | n/a | `map(any)` | <pre>{<br>  "enabled": true<br>}</pre> | no |
 
 ## Outputs
 
