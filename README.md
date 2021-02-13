@@ -47,10 +47,13 @@ Add **module.storage.tf** to your code:-
 module "storage" {
   source      = "JamesWoolfenden/storage/gcp"
   version     = "0.2.3"
-  binding     = var.binding
-  bucket_name = var.bucket_name
-  project     = var.project
-  location    = var.location
+  common_tags   = var.common_tags
+  binding       = var.binding
+  bucket_name   = var.bucket_name
+  project       = var.project
+  location      = var.location
+  log_bucket    = google_storage_bucket.logging.name
+  force_destroy = true
 }
 ```
 
