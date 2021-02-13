@@ -78,14 +78,22 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | acl | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
+| action\_storage\_class | The target Storage Class of objects affected by this Lifecycle Rule. Supported values include: MULTI\_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE | `string` | `"COLDLINE"` | no |
+| action\_type | The type of the action of this Lifecycle Rule. Supported values include: Delete and SetStorageClass | `string` | `"SetStorageClass"` | no |
 | binding | The Bindings to be applied to the bucket | `any` | n/a | yes |
 | bucket\_name | The name of the bucket | `string` | n/a | yes |
 | common\_tags | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
+| cors | n/a | `map` | <pre>{<br>  "max_age_seconds": null,<br>  "method": [<br>    ""<br>  ],<br>  "origin": [<br>    ""<br>  ],<br>  "response_header": [<br>    ""<br>  ]<br>}</pre> | no |
 | force\_destroy | Flag to set to destroy buckets with content | `bool` | `false` | no |
 | kms\_key | Which key to encrypt with | `string` | `""` | no |
+| lifecycle\_age | Minimum (days) age of an object in days to satisfy this condition | `number` | `3` | no |
 | location | Where the bucket is | `string` | `"US"` | no |
+| log\_bucket | Should not be itself | `string` | n/a | yes |
+| main\_page\_suffix | n/a | `string` | `null` | no |
+| not\_found\_page | n/a | `string` | `"404.html"` | no |
 | predefined\_acl | n/a | `string` | `"private"` | no |
 | project | The GCP projec name | `string` | n/a | yes |
+| retention\_period | n/a | `number` | `2592000` | no |
 | versioning | n/a | `map(any)` | <pre>{<br>  "enabled": true<br>}</pre> | no |
 
 ## Outputs

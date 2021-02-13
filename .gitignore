@@ -24,3 +24,4 @@ lambda
 *.gz
 .terraform.tfstate.lock.info
 .terraform.lock.hcl
+crash.log
