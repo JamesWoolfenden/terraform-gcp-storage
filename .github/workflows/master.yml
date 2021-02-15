@@ -3,7 +3,7 @@
 name: Verify and Bump
 on:
   schedule:
-    - cron: '* * * * SUN'
+    - cron: '00 7 * * SUN'
   push:
     branches:
       - master

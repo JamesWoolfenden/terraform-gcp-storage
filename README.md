@@ -2,13 +2,19 @@
 
 [![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-storage/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-storage)
 [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-storage.svg)](https://github.com/JamesWoolfenden/terraform-gcp-storage/releases/latest)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/JamesWoolfenden/terraform-gcp-storage.svg?label=latest)](https://github.com/JamesWoolfenden/terraform-gcp-storage/releases/latest)
+![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.14.0-blue.svg)
+[![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/JamesWoolfenden/terraform-gcp-storage/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-gcp-storage&benchmark=CIS+AWS+V1.2)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![checkov](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/jameswoolfenden/terraform-gcp-storage/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-gcp-storage&benchmark=INFRASTRUCTURE+SECURITY)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/jameswoolfenden/terraform-gcp-storage/cis_gcp)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-gcp-storage&benchmark=CIS+GCP+V1.1)
 
 This creates a GCP storage account.
-I created this module initially to help with making a helm repo.
+
+![alt text](./diagram/gcp_storage.png)
+
+I created this module initially to help with making a Helm repo.
 
 I had to first create a test repo from the charts folder
 
@@ -18,7 +24,7 @@ helm serve --repo-path ./charts
 
 This gave me a sample **index.yaml**, which I added as part of the repo creation process [it's in the template folder for the example].
 
-I now have a public helm repo.
+I now have a public Helm repo.
 https://helm-repo-examplea.storage.googleapis.com/
 
 This example has a minimal **index.yaml**
@@ -45,8 +51,8 @@ Add **module.storage.tf** to your code:-
 
 ```terraform
 module "storage" {
-  source      = "JamesWoolfenden/storage/gcp"
-  version     = "0.2.3"
+  source        = "JamesWoolfenden/storage/gcp"
+  version       = "0.2.3"
   common_tags   = var.common_tags
   binding       = var.binding
   bucket_name   = var.bucket_name
@@ -96,7 +102,7 @@ No requirements.
 | not\_found\_page | n/a | `string` | `"404.html"` | no |
 | predefined\_acl | n/a | `string` | `"private"` | no |
 | project | The GCP projec name | `string` | n/a | yes |
-| retention\_period | n/a | `number` | `2592000` | no |
+| retention\_period | n/a | `number` | `0` | no |
 | versioning | n/a | `map(any)` | <pre>{<br>  "enabled": true<br>}</pre> | no |
 
 ## Outputs

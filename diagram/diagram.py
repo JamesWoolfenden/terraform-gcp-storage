@@ -1,7 +1,6 @@
 # diagram.py
 from diagrams import Cluster, Diagram
-from diagrams.aws.integration import Appsync
+from diagrams.gcp.storage  import Storage
 
-
-with Diagram("API", show=False):
-     Appsync("Graph-API")
+with Diagram("GCP storage", show=False):
+     Storage("Bucket")
