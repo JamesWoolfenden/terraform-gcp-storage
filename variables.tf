@@ -31,10 +31,6 @@ variable "project" {
   type        = string
 }
 
-variable "binding" {
-  description = "The Bindings to be applied to the bucket"
-}
-
 variable "acl" {
   type        = number
   description = "Flag to create and ACL or not, alternative is to use a bucket policy/binding"

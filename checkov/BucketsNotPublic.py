@@ -17,7 +17,7 @@ class BucketsNotPublic(BaseResourceCheck):
             if 'allUsers' in members:
                 return CheckResult.FAILED
             else:
-                CheckResult.PASSED
+                return CheckResult.PASSED
         else:
             return CheckResult.PASSED
 

@@ -12,6 +12,15 @@ variable "project" {
   type = string
 }
 
-variable "binding" {}
+variable "location" {
+  type = string
+}
 
-variable "location" {}
+
+variable "binding_role" {
+  type = string
+}
+
+variable "binding_members" {
+  type = list(any)
+}

@@ -1,5 +1,4 @@
 resource "google_storage_bucket" "bucket" {
-  #checkov:skip=CKV_GCP_5:encryption is alway on
   name     = var.bucket_name
   location = var.location
   project  = var.project
