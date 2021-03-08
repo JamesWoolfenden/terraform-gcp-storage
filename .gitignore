@@ -2,7 +2,7 @@
 *.tfstate
 *.tfstate.backup
 *.zip
-
+.DS_Store
 # Module directory
 .terraform/
 .terraform
@@ -10,18 +10,18 @@ __pycache__/
 .idea
 *.iml
 *.orig
-
 *.ini
 *~HEAD
 *backup
-*.ini
 tmp
 lambda
 *~HEAD
 *backup
 *.bak
-*.orig
-*.gz
 .terraform.tfstate.lock.info
 .terraform.lock.hcl
-crash.log
+tf.json
+tf.plan
+*.log
+output/*.json
+secrets.auto.tfvars
