@@ -115,7 +115,6 @@ No Modules.
 | not\_found\_page | n/a | `string` | `"404.html"` | no |
 | predefined\_acl | n/a | `string` | `"private"` | no |
 | project | The GCP projec name | `string` | n/a | yes |
-| retention\_period | n/a | `number` | `0` | no |
 | versioning | n/a | `map(any)` | <pre>{<br>  "enabled": true<br>}</pre> | no |
 
 ## Outputs

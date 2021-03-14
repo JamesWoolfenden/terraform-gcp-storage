@@ -33,10 +33,6 @@ resource "google_storage_bucket" "bucket" {
     response_header = var.cors["response_header"]
   }
 
-  retention_policy {
-    retention_period = var.retention_period
-  }
-
   labels = var.common_tags
 
   logging {
@@ -72,20 +68,6 @@ variable "lifecycle_age" {
   type        = number
   description = "Minimum (days) age of an object in days to satisfy this condition"
   default     = 3
-}
-
-variable "retention_period" {
-  type    = number
-  default = 0
-  #2592000
-
-  #minimum_retention_days: 10
-  #maximum_retention_days: 30
-
-  validation {
-    condition     = var.retention_period == 0 || (var.retention_period < 2592001 && var.retention_period > 864000)
-    error_message = "If set, retention period should be greater than 10 days and less than 30 days."
-  }
 }
 
 variable "log_bucket" {

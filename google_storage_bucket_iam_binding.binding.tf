@@ -6,9 +6,7 @@ resource "google_storage_bucket_iam_binding" "binding" {
 
 
 variable "binding_role" {
-
 }
 
 variable "binding_members" {
-
 }
