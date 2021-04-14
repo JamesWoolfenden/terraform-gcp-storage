@@ -49,3 +49,9 @@ variable "force_destroy" {
   description = "Flag to set to destroy buckets with content"
   default     = false
 }
+
+variable "binding_role" {
+}
+
+variable "binding_members" {
+}

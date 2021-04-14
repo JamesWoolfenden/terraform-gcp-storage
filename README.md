@@ -80,49 +80,49 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| google | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [google_storage_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) |
-| [google_storage_bucket_acl](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_acl) |
-| [google_storage_bucket_iam_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_binding) |
+| Name | Type |
+|------|------|
+| [google_storage_bucket.bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket_acl.bucketacl](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_acl) | resource |
+| [google_storage_bucket_iam_binding.binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_binding) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| acl | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
-| action\_storage\_class | The target Storage Class of objects affected by this Lifecycle Rule. Supported values include: MULTI\_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE | `string` | `"COLDLINE"` | no |
-| action\_type | The type of the action of this Lifecycle Rule. Supported values include: Delete and SetStorageClass | `string` | `"SetStorageClass"` | no |
-| binding\_members | n/a | `any` | n/a | yes |
-| binding\_role | n/a | `any` | n/a | yes |
-| bucket\_name | The name of the bucket | `string` | n/a | yes |
-| common\_tags | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
-| cors | n/a | `map` | <pre>{<br>  "max_age_seconds": null,<br>  "method": [<br>    ""<br>  ],<br>  "origin": [<br>    ""<br>  ],<br>  "response_header": [<br>    ""<br>  ]<br>}</pre> | no |
-| force\_destroy | Flag to set to destroy buckets with content | `bool` | `false` | no |
-| kms\_key | Which key to encrypt with | `string` | `""` | no |
-| lifecycle\_age | Minimum (days) age of an object in days to satisfy this condition | `number` | `3` | no |
-| location | Where the bucket is | `string` | `"US"` | no |
-| log\_bucket | Should not be itself | `string` | n/a | yes |
-| main\_page\_suffix | n/a | `string` | `null` | no |
-| not\_found\_page | n/a | `string` | `"404.html"` | no |
-| predefined\_acl | n/a | `string` | `"private"` | no |
-| project | The GCP projec name | `string` | n/a | yes |
-| versioning | n/a | `map(any)` | <pre>{<br>  "enabled": true<br>}</pre> | no |
+| <a name="input_acl"></a> [acl](#input\_acl) | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
+| <a name="input_action_storage_class"></a> [action\_storage\_class](#input\_action\_storage\_class) | The target Storage Class of objects affected by this Lifecycle Rule. Supported values include: MULTI\_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE | `string` | `"COLDLINE"` | no |
+| <a name="input_action_type"></a> [action\_type](#input\_action\_type) | The type of the action of this Lifecycle Rule. Supported values include: Delete and SetStorageClass | `string` | `"SetStorageClass"` | no |
+| <a name="input_binding_members"></a> [binding\_members](#input\_binding\_members) | n/a | `any` | n/a | yes |
+| <a name="input_binding_role"></a> [binding\_role](#input\_binding\_role) | n/a | `any` | n/a | yes |
+| <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the bucket | `string` | n/a | yes |
+| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
+| <a name="input_cors"></a> [cors](#input\_cors) | n/a | `map` | <pre>{<br>  "max_age_seconds": null,<br>  "method": [<br>    ""<br>  ],<br>  "origin": [<br>    ""<br>  ],<br>  "response_header": [<br>    ""<br>  ]<br>}</pre> | no |
+| <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Flag to set to destroy buckets with content | `bool` | `false` | no |
+| <a name="input_kms_key"></a> [kms\_key](#input\_kms\_key) | Which key to encrypt with | `string` | `""` | no |
+| <a name="input_lifecycle_age"></a> [lifecycle\_age](#input\_lifecycle\_age) | Minimum (days) age of an object in days to satisfy this condition | `number` | `3` | no |
+| <a name="input_location"></a> [location](#input\_location) | Where the bucket is | `string` | `"US"` | no |
+| <a name="input_log_bucket"></a> [log\_bucket](#input\_log\_bucket) | Should not be itself | `string` | n/a | yes |
+| <a name="input_main_page_suffix"></a> [main\_page\_suffix](#input\_main\_page\_suffix) | n/a | `string` | `null` | no |
+| <a name="input_not_found_page"></a> [not\_found\_page](#input\_not\_found\_page) | n/a | `string` | `"404.html"` | no |
+| <a name="input_predefined_acl"></a> [predefined\_acl](#input\_predefined\_acl) | n/a | `string` | `"private"` | no |
+| <a name="input_project"></a> [project](#input\_project) | The GCP projec name | `string` | n/a | yes |
+| <a name="input_versioning"></a> [versioning](#input\_versioning) | n/a | `map(any)` | <pre>{<br>  "enabled": true<br>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket | All the bucket info |
-| url | The Url of the statebucket |
+| <a name="output_bucket"></a> [bucket](#output\_bucket) | All the bucket info |
+| <a name="output_url"></a> [url](#output\_url) | The Url of the statebucket |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects
