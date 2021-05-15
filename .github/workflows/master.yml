@@ -47,11 +47,12 @@ jobs:
           mkdir $GITHUB_WORKSPACE/bin
           tar -xvf infracost*.tar.gz --directory $GITHUB_WORKSPACE/bin
           chmod +x $GITHUB_WORKSPACE/bin/infracost-linux-amd64
-          $GITHUB_WORKSPACE/bin/infracost-linux-amd64 breakdown --path ${{ env.tf_target_dir }}
+          $GITHUB_WORKSPACE/bin/infracost-linux-amd64 breakdown --path ${{ env.tf_target_dir }} --terraform-use-state ${{ env.tf_target_dir }}
         env:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Do not change
           GOOGLE_CLOUD_KEYFILE_JSON: ${{ secrets.GOOGLE_CLOUD_KEYFILE_JSON }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CLOUD_KEYFILE_JSON }}
   security:
     runs-on: ubuntu-latest
     steps:
