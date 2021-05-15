@@ -85,4 +85,5 @@ jobs:
         with:
           entrypoint: /scripts/ci/diff.sh # Do not change
           path: ${{ env.tf_target_dir }}
+          usage_file: ${{ env.tf_target_dir }}/infracost-usage.yml
           #terraform_plan_flags: -var-file=my.tfvars
