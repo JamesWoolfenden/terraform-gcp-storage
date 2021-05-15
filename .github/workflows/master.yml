@@ -51,8 +51,6 @@ jobs:
         env:
           INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Do not change
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           GOOGLE_CLOUD_KEYFILE_JSON: ${{ secrets.GOOGLE_CLOUD_KEYFILE_JSON }}
   security:
     runs-on: ubuntu-latest
