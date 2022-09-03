@@ -9,10 +9,8 @@ variable "predefined_acl" {
 }
 
 variable "versioning" {
-  type = map(any)
-  default = {
-    enabled = true
-  }
+  type    = string
+  default = true
 }
 
 variable "bucket_name" {
@@ -27,7 +25,7 @@ variable "location" {
 }
 
 variable "project" {
-  description = "The GCP projec name"
+  description = "The GCP project name"
   type        = string
 }
 
@@ -40,8 +38,7 @@ variable "acl" {
 variable "kms_key" {
   description = "Which key to encrypt with"
   type        = string
-
-  default = ""
+  default     = ""
 }
 
 variable "force_destroy" {
@@ -54,4 +51,56 @@ variable "binding_role" {
 }
 
 variable "binding_members" {
+}
+
+
+
+variable "action_type" {
+  description = "The type of the action of this Lifecycle Rule. Supported values include: Delete and SetStorageClass"
+  validation {
+    condition     = var.action_type == "Delete" || var.action_type == "SetStorageClass"
+    error_message = "Supported values include: Delete and SetStorageClass."
+  }
+  default = "SetStorageClass"
+}
+
+variable "action_storage_class" {
+  type        = string
+  description = "The target Storage Class of objects affected by this Lifecycle Rule. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE"
+  validation {
+    condition     = var.action_storage_class == "MULTI_REGIONAL" || var.action_storage_class == "REGIONAL" || var.action_storage_class == "NEARLINE" || var.action_storage_class == "COLDLINE" || var.action_storage_class == "ARCHIVE"
+    error_message = "Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE."
+  }
+  default = "COLDLINE"
+}
+
+variable "lifecycle_age" {
+  type        = number
+  description = "Minimum (days) age of an object in days to satisfy this condition"
+  default     = 3
+}
+
+variable "log_bucket" {
+  type        = string
+  description = "Should not be itself"
+}
+
+variable "main_page_suffix" {
+  type    = string
+  default = null
+}
+
+variable "not_found_page" {
+  type    = string
+  default = "404.html"
+}
+
+
+variable "cors" {
+  default = {
+    origin          = [""]
+    method          = [""]
+    response_header = [""]
+    max_age_seconds = null
+  }
 }
