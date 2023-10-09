@@ -5,5 +5,6 @@ resource "google_storage_bucket" "logging" {
   name     = "jgwloggingbucket"
   location = var.location
 
+  public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
 }

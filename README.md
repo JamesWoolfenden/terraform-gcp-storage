@@ -80,7 +80,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.0.0 |
 
 ## Modules
 
@@ -115,6 +115,7 @@ No modules.
 | <a name="input_not_found_page"></a> [not\_found\_page](#input\_not\_found\_page) | n/a | `string` | `"404.html"` | no |
 | <a name="input_predefined_acl"></a> [predefined\_acl](#input\_predefined\_acl) | n/a | `string` | `"private"` | no |
 | <a name="input_project"></a> [project](#input\_project) | The GCP project name | `string` | n/a | yes |
+| <a name="input_public"></a> [public](#input\_public) | Make bucket publicly accessible | `string` | `"enforced"` | no |
 | <a name="input_versioning"></a> [versioning](#input\_versioning) | n/a | `string` | `true` | no |
 
 ## Outputs
@@ -131,10 +132,11 @@ No modules.
 The Terraform resource required is:
 
 ```golang
-resource "google_project_iam_custom_role" "terraformXVlBzgba" {
-  project     = "examplea"
+
+resource "google_project_iam_custom_role" "terraform_pike" {
+  project     = "pike"
   role_id     = "terraform_pike"
-  title       = "terraformXVlBzgba"
+  title       = "terraform_pike"
   description = "A user with least privileges"
   permissions = [
     "storage.buckets.create",
@@ -142,12 +144,10 @@ resource "google_project_iam_custom_role" "terraformXVlBzgba" {
     "storage.buckets.get",
     "storage.buckets.getIamPolicy",
     "storage.buckets.setIamPolicy",
-    "storage.buckets.update",
-    "storage.objects.create",
-    "storage.objects.delete",
-    "storage.objects.get"
+    "storage.buckets.update"
   ]
 }
+
 
 ```
 <!-- END OF PRE-COMMIT-PIKE DOCS HOOK -->

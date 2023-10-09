@@ -104,3 +104,9 @@ variable "cors" {
     max_age_seconds = null
   }
 }
+
+variable "public" {
+  type        = string
+  description = "Make bucket publicly accessible"
+  default     = "enforced"
+}
