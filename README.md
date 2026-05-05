@@ -105,7 +105,7 @@ No modules.
 | <a name="input_binding_role"></a> [binding\_role](#input\_binding\_role) | n/a | `any` | n/a | yes |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the bucket | `string` | n/a | yes |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
-| <a name="input_cors"></a> [cors](#input\_cors) | n/a | `map` | <pre>{<br>  "max_age_seconds": null,<br>  "method": [<br>    ""<br>  ],<br>  "origin": [<br>    ""<br>  ],<br>  "response_header": [<br>    ""<br>  ]<br>}</pre> | no |
+| <a name="input_cors"></a> [cors](#input\_cors) | n/a | `map` | <pre>{<br/>  "max_age_seconds": null,<br/>  "method": [<br/>    ""<br/>  ],<br/>  "origin": [<br/>    ""<br/>  ],<br/>  "response_header": [<br/>    ""<br/>  ]<br/>}</pre> | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Flag to set to destroy buckets with content | `bool` | `false` | no |
 | <a name="input_kms_key"></a> [kms\_key](#input\_kms\_key) | Which key to encrypt with | `string` | `""` | no |
 | <a name="input_lifecycle_age"></a> [lifecycle\_age](#input\_lifecycle\_age) | Minimum (days) age of an object in days to satisfy this condition | `number` | `3` | no |
