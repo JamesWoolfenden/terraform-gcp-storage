@@ -5,8 +5,7 @@ module "store" {
   project          = var.project
   location         = var.location
   binding_role     = "roles/storage.objectViewer"
-  binding_members  = [""]
+  binding_members  = ["user:james.woolfenden@gmail.com"]
   log_bucket       = ""
   force_destroy    = true
-  retention_period = var.retention_period
 }

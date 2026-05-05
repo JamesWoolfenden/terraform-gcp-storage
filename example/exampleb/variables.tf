@@ -12,3 +12,7 @@ variable "location" {}
 variable "retention_period" {
 
 }
+
+variable "binding_members" {
+  type = list(string)
+}
