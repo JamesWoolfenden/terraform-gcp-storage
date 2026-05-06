@@ -79,7 +79,7 @@ No requirements.
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
 
 ## Modules
@@ -89,7 +89,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [google_storage_bucket.bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
 | [google_storage_bucket_acl.bucketacl](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_acl) | resource |
 | [google_storage_bucket_iam_binding.binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_binding) | resource |
@@ -97,7 +97,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_acl"></a> [acl](#input\_acl) | Flag to create and ACL or not, alternative is to use a bucket policy/binding | `number` | `0` | no |
 | <a name="input_action_storage_class"></a> [action\_storage\_class](#input\_action\_storage\_class) | The target Storage Class of objects affected by this Lifecycle Rule. Supported values include: MULTI\_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE | `string` | `"COLDLINE"` | no |
 | <a name="input_action_type"></a> [action\_type](#input\_action\_type) | The type of the action of this Lifecycle Rule. Supported values include: Delete and SetStorageClass | `string` | `"SetStorageClass"` | no |
@@ -121,7 +121,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_bucket"></a> [bucket](#output\_bucket) | All the bucket info |
 | <a name="output_url"></a> [url](#output\_url) | The Url of the statebucket |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -134,7 +134,7 @@ The Terraform resource required is:
 ```golang
 
 resource "google_project_iam_custom_role" "terraform_pike" {
-  project     = "pike"
+  project     = "pike-477416"
   role_id     = "terraform_pike"
   title       = "terraform_pike"
   description = "A user with least privileges"
