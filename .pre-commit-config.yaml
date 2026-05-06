@@ -57,7 +57,7 @@ repos:
             - .
             - -i
       repo: https://github.com/jameswoolfenden/pike
-      rev: d043242b9e1733e9e5a67c20bb87c05a4d563596 # v0.4.1
+      rev: 74bd2769e14e24cc25e9883cd3cc97c1b26a335a # v0.4.2
     - hooks:
         - id: ghat-go
           args:
