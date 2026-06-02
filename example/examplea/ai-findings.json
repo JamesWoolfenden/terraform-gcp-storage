@@ -1,0 +1,44 @@
+{
+  "findings": [
+    {
+      "confidence": "high",
+      "explanation": "This bucket is the log_bucket target for module.helmrepo's access logs, but it has no retention_policy block. Without bucket-lock retention, an attacker (or a mistaken tofu destroy) can delete or overwrite access logs, defeating the audit trail the logging block is meant to provide. Deterministic rules check whether a bucket *has* logging configured, but cannot tell that *this* bucket is the log sink and therefore needs immutability \u2014 that requires following the cross-resource reference.",
+      "file": "google_storage_bucket.logging.tf",
+      "id": "HOLDEN_AI_001",
+      "line": 1,
+      "principle": "logging-and-monitoring",
+      "related_resources": [
+        "module.helmrepo.google_storage_bucket.bucket"
+      ],
+      "remediation": "Add `retention_policy { retention_period = 2592000 }` (30 days, or your audit window) to google_storage_bucket.logging. Consider also setting `is_locked = true` once the retention period is validated.",
+      "resource": "google_storage_bucket.logging",
+      "severity": "MEDIUM",
+      "title": "Access-log sink bucket has no retention_policy \u2014 logs are mutable and deletable"
+    },
+    {
+      "confidence": "high",
+      "explanation": "The module declares var.predefined_acl with a validation set that includes publicRead and publicReadWrite, but google_storage_bucket_acl.bucketacl hardcodes predefined_acl = \"private\" and never references the variable. A caller setting predefined_acl = \"publicRead\" gets a silent no-op today; a future maintainer who 'fixes' the wiring would suddenly enable a public-exposure path that bypasses the bucket's public_access_prevention intent. Additionally, the ACL resource can never apply successfully because uniform_bucket_level_access = true is hardcoded on the bucket, making ACLs invalid.",
+      "file": "/Users/jwoolfenden/code/modules/gcp/terraform-gcp-storage/variables.tf",
+      "id": "HOLDEN_AI_002",
+      "line": 3,
+      "principle": "maintainability",
+      "related_resources": [
+        "module.helmrepo.google_storage_bucket_acl.bucketacl"
+      ],
+      "remediation": "Remove var.predefined_acl and var.acl, and delete google_storage_bucket_acl.bucket-acl.tf \u2014 legacy ACLs are incompatible with the module's hardcoded uniform_bucket_level_access = true.",
+      "resource": "module.helmrepo.var.predefined_acl",
+      "severity": "LOW",
+      "title": "var.predefined_acl accepts publicRead/publicReadWrite but is never wired to any resource"
+    }
+  ],
+  "suggested_policies": [
+    {
+      "rationale": "google_storage_bucket has 5 existing policies (CMEK, UBLA, logging, versioning, labels) but none checks public_access_prevention. This attribute is GCS's primary org-policy-independent control against public exposure; when set to 'inherited' a bucket can be made public via IAM regardless of UBLA. Both buckets in this scan set it to 'enforced' so no finding fired, but the gap means a bucket omitting the attribute or setting 'inherited' would pass holden today.",
+      "yaml": "id: HLD_PROPOSED_001\nname: GCS buckets must enforce public access prevention\nprinciple: network-security\nseverity: HIGH\nrationale: |\n  When public_access_prevention is unset or set to \"inherited\", a GCS bucket\n  relies solely on the project/organisation policy constraint to block public\n  access. If that org policy is absent or later relaxed, the bucket can be\n  made world-readable by adding allUsers to its IAM policy \u2014 even with\n  uniform_bucket_level_access enabled. Setting public_access_prevention =\n  \"enforced\" at the bucket level guarantees the bucket can never be exposed\n  publicly, independent of org-policy drift.\nremediation: |\n  Set `public_access_prevention = \"enforced\"` on the `google_storage_bucket`\n  resource.\ncompliance:\n  cis_gcp: \"5.1\"\nresources:\n  google_storage_bucket:\n    path: public_access_prevention\n    equals: \"enforced\"\n"
+    },
+    {
+      "rationale": "coverage_by_type has no entry for google_storage_bucket_acl. This legacy resource can grant anonymous read or write to an entire bucket via predefined_acl = publicRead / publicReadWrite, bypassing IAM-based checks (HLD_GCP_018/039 only cover the iam_binding/iam_member resources). The check is a simple attribute enum and applies universally.",
+      "yaml": "id: HLD_PROPOSED_002\nname: GCS bucket ACLs must not grant public access\nprinciple: network-security\nseverity: CRITICAL\nrationale: |\n  The google_storage_bucket_acl resource applies legacy ACLs to a bucket. A\n  predefined_acl of publicRead or publicReadWrite makes every object in the\n  bucket readable (or writable) by anonymous internet users, with no\n  authentication. Because ACLs are a separate access-control surface from\n  IAM, holden's existing IAM-binding checks (HLD_GCP_018, HLD_GCP_039) do not\n  see this exposure path.\nremediation: |\n  Remove the `google_storage_bucket_acl` resource and rely on IAM with\n  `uniform_bucket_level_access = true`, or set `predefined_acl` to `private`\n  or `projectPrivate`.\nresources:\n  google_storage_bucket_acl:\n    path: predefined_acl\n    not_one_of:\n      - publicRead\n      - publicReadWrite\n  google_storage_default_object_acl:\n    path: predefined_acl\n    not_one_of:\n      - publicRead\n      - publicReadWrite\n"
+    }
+  ]
+}

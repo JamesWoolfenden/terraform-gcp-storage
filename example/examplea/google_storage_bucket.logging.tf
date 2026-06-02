@@ -7,4 +7,8 @@ resource "google_storage_bucket" "logging" {
 
   public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
+
+  retention_policy {
+    retention_period = 2592000
+  }
 }

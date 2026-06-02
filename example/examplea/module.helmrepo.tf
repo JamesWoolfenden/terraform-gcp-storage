@@ -1,7 +1,6 @@
 # holden:ignore:HLD_TF_026 — examples intentionally use ../../ to reference the local module root
 module "helmrepo" {
   source          = "../../"
-  common_tags     = var.common_tags
   binding_role    = var.binding_role
   binding_members = var.binding_members
   bucket_name     = var.bucket_name

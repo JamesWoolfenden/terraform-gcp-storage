@@ -33,8 +33,6 @@ resource "google_storage_bucket" "bucket" {
     response_header = var.cors["response_header"]
   }
 
-  labels = var.common_tags
-
   logging {
     log_bucket = var.log_bucket
   }

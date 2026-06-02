@@ -1,0 +1,26 @@
+id: HLD_PROPOSED_002
+name: GCS bucket ACLs must not grant public access
+principle: network-security
+severity: CRITICAL
+rationale: |
+  The google_storage_bucket_acl resource applies legacy ACLs to a bucket. A
+  predefined_acl of publicRead or publicReadWrite makes every object in the
+  bucket readable (or writable) by anonymous internet users, with no
+  authentication. Because ACLs are a separate access-control surface from
+  IAM, holden's existing IAM-binding checks (HLD_GCP_018, HLD_GCP_039) do not
+  see this exposure path.
+remediation: |
+  Remove the `google_storage_bucket_acl` resource and rely on IAM with
+  `uniform_bucket_level_access = true`, or set `predefined_acl` to `private`
+  or `projectPrivate`.
+resources:
+  google_storage_bucket_acl:
+    path: predefined_acl
+    not_one_of:
+      - publicRead
+      - publicReadWrite
+  google_storage_default_object_acl:
+    path: predefined_acl
+    not_one_of:
+      - publicRead
+      - publicReadWrite

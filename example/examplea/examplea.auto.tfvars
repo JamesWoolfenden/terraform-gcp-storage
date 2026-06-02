@@ -1,12 +1,5 @@
-common_tags = {
-  createdby = "terraform"
-module = "terraform-gcp-storage" }
-bucket_name = "helm-repo-examplea"
-project     = "pike"
-
-#allUsers makes this bucket public
+bucket_name     = "helm-repo-examplea"
+project         = "pike"
 binding_role    = "roles/storage.objectViewer"
-binding_members = ["allUsers"]
-
-
-location = "europe-west2"
+binding_members = ["user:james.woolfenden@gmail.com"]
+location        = "europe-west2"

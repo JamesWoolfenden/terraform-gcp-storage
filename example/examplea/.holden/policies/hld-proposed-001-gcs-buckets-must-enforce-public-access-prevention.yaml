@@ -1,0 +1,21 @@
+id: HLD_PROPOSED_001
+name: GCS buckets must enforce public access prevention
+principle: network-security
+severity: HIGH
+rationale: |
+  When public_access_prevention is unset or set to "inherited", a GCS bucket
+  relies solely on the project/organisation policy constraint to block public
+  access. If that org policy is absent or later relaxed, the bucket can be
+  made world-readable by adding allUsers to its IAM policy — even with
+  uniform_bucket_level_access enabled. Setting public_access_prevention =
+  "enforced" at the bucket level guarantees the bucket can never be exposed
+  publicly, independent of org-policy drift.
+remediation: |
+  Set `public_access_prevention = "enforced"` on the `google_storage_bucket`
+  resource.
+compliance:
+  cis_gcp: "5.1"
+resources:
+  google_storage_bucket:
+    path: public_access_prevention
+    equals: "enforced"
