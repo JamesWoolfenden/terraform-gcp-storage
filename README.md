@@ -87,8 +87,8 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [google_storage_bucket.bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
-| [google_storage_bucket_iam_binding.binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_binding) | resource |
+| [google_storage_bucket.pike](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket_iam_binding.pike](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_binding) | resource |
 
 ## Inputs
 
@@ -101,6 +101,7 @@ No modules.
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The name of the bucket | `string` | n/a | yes |
 | <a name="input_cors"></a> [cors](#input\_cors) | CORS configuration map for the bucket: origin, method, response\_header, max\_age\_seconds | `any` | <pre>{<br/>  "max_age_seconds": null,<br/>  "method": [<br/>    ""<br/>  ],<br/>  "origin": [<br/>    ""<br/>  ],<br/>  "response_header": [<br/>    ""<br/>  ]<br/>}</pre> | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | If true, the bucket will be destroyed even if it contains objects | `bool` | `false` | no |
+| <a name="input_kms_key_name"></a> [kms\_key\_name](#input\_kms\_key\_name) | The name of the KMS key | `string` | n/a | yes |
 | <a name="input_lifecycle_age"></a> [lifecycle\_age](#input\_lifecycle\_age) | Minimum age in days for objects to match the lifecycle rule | `number` | `3` | no |
 | <a name="input_location"></a> [location](#input\_location) | GCP region or multi-region location for the bucket | `string` | `"US"` | no |
 | <a name="input_log_bucket"></a> [log\_bucket](#input\_log\_bucket) | Bucket name to write access logs to (if set, should be different from the target bucket) | `string` | `""` | no |
@@ -108,6 +109,7 @@ No modules.
 | <a name="input_not_found_page"></a> [not\_found\_page](#input\_not\_found\_page) | Custom not-found page when serving a static website from the bucket | `string` | `"404.html"` | no |
 | <a name="input_project"></a> [project](#input\_project) | The GCP project id | `string` | n/a | yes |
 | <a name="input_public"></a> [public](#input\_public) | Public access prevention setting for the bucket. 'enforced' or 'inherited' | `string` | `"enforced"` | no |
+| <a name="input_requester_pays"></a> [requester\_pays](#input\_requester\_pays) | If true, requester pays for access to the bucket and its data | `bool` | `false` | no |
 | <a name="input_versioning"></a> [versioning](#input\_versioning) | Enable versioning for objects in the bucket | `bool` | `true` | no |
 
 ## Outputs
@@ -124,7 +126,7 @@ No modules.
 The Terraform resource required is:
 
 ```golang
-
+# apply role
 resource "google_project_iam_custom_role" "terraform_pike" {
   project     = "pike-477416"
   role_id     = "terraform_pike"
@@ -137,6 +139,18 @@ resource "google_project_iam_custom_role" "terraform_pike" {
     "storage.buckets.getIamPolicy",
     "storage.buckets.setIamPolicy",
     "storage.buckets.update"
+  ]
+}
+
+# plan role
+resource "google_project_iam_custom_role" "terraform_pike_plan" {
+  project     = "pike-477416"
+  role_id     = "terraform_pike_plan"
+  title       = "terraform_pike_plan"
+  description = "A user with least privileges"
+  permissions = [
+    "storage.buckets.get",
+    "storage.buckets.getIamPolicy"
   ]
 }
 

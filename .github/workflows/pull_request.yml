@@ -12,6 +12,7 @@ permissions:
   contents: read
 
 jobs:
+  # holden:ignore:HLD_CI_017: same-author reusable workflow (JamesWoolfenden/.github), intentionally tracked at @main to pick up fixes without per-repo SHA bumps
   pr:
     uses: JamesWoolfenden/.github/.github/workflows/terraform-pr-gcp.yml@main
     with:

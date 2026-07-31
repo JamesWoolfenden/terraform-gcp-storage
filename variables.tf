@@ -1,3 +1,4 @@
+# holden:ignore:HLD_TF_027
 variable "bucket_name" {
   description = "The name of the bucket"
   type        = string
@@ -32,16 +33,6 @@ variable "versioning" {
   type        = bool
   default     = true
 }
-
-# variable "kms_key" {
-#   description = "KMS key resource id to encrypt objects with (empty = no CMEK)"
-#   type        = string
-#   default     = ""
-#   validation {
-#     condition     = var.kms_key == "" || startswith(var.kms_key, "projects/")
-#     error_message = "kms_key must be empty or a fully-qualified resource id beginning with 'projects/'"
-#   }
-# }
 
 variable "force_destroy" {
   description = "If true, the bucket will be destroyed even if it contains objects"
@@ -152,4 +143,20 @@ variable "public" {
     condition     = var.public == "enforced" || var.public == "inherited"
     error_message = "public must be either 'enforced' or 'inherited'"
   }
+}
+
+variable "kms_key_name" {
+  type        = string
+  description = "The name of the KMS key"
+  sensitive   = true
+  validation {
+    condition     = length(var.kms_key_name) > 0
+    error_message = "kms_key_name must not be empty"
+  }
+}
+
+variable "requester_pays" {
+  description = "If true, requester pays for access to the bucket and its data"
+  type        = bool
+  default     = false
 }

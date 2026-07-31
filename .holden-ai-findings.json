@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "confidence": "high",
+      "explanation": "The logging block on google_storage_bucket.pike was emitted unconditionally with log_bucket = var.log_bucket, and log_bucket defaults to \"\" with no validation requiring a non-empty value (unlike kms_key_name, which was just made required for the same reason). HLD_GCP_003 ('GCS buckets must have access logging enabled') passed here because the engine only sees that the logging block is structurally present -- it can't resolve var.log_bucket to see the value is empty. example/exampleb/module.store.tf:9 set log_bucket = \"\" explicitly, so that deployed bucket had no real access logging despite the block existing in HCL, and the same silent gap applied to any consumer of the root module who simply omitted log_bucket (the documented default). Separately, an empty log_bucket is very likely an invalid bucket name to the GCS API, so this also risked an apply-time error wherever it was left at its default -- the module's own README usage example always sets a real log_bucket, suggesting the empty default was never meant to be exercised.",
+      "file": "google_storage_bucket.bucket.tf",
+      "first_seen": "2026-07-31",
+      "fixable": false,
+      "id": "HOLDEN_AI_001",
+      "last_seen": "2026-07-31",
+      "line": 40,
+      "principle": "logging-and-monitoring",
+      "related_resources": [
+        "variables.tf:128 (log_bucket variable, default = \"\")",
+        "example/exampleb/module.store.tf:9 (log_bucket = \"\")",
+        "example/examplea/module.helmrepo.tf:9 (log_bucket = google_storage_bucket.logging.name, correctly set)"
+      ],
+      "remediation": "Fixed by wrapping the block in dynamic \"logging\" gated on var.log_bucket != \"\", so omitting it cleanly disables logging instead of emitting an invalid empty bucket name.",
+      "resource": "google_storage_bucket.pike",
+      "severity": "MEDIUM",
+      "status": "fixed",
+      "supersedes": "HLD_GCP_003",
+      "suppression_reason": null,
+      "title": "Access logging can be silently disabled via an empty log_bucket, invisibly to HLD_GCP_003",
+      "unresolved_since": null
+    }
+  ],
+  "scan_date": "2026-07-31T00:00:00Z",
+  "scan_path": ".",
+  "suggested_policies": [],
+  "suggested_suppressions": []
+}

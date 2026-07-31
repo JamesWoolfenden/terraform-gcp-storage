@@ -1,6 +1,7 @@
 resource "google_storage_bucket_object" "robots" {
-  name       = "robots.txt"
-  source     = "./template/robots.txt"
-  bucket     = module.helmrepo.bucket.name
-  depends_on = [module.helmrepo]
+  name         = "robots.txt"
+  source       = "./template/robots.txt"
+  bucket       = module.helmrepo.bucket.name
+  kms_key_name = var.kms_key_name
+  depends_on   = [module.helmrepo]
 }

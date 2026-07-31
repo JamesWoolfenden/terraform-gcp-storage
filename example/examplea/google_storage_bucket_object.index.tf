@@ -1,6 +1,7 @@
 resource "google_storage_bucket_object" "index" {
-  name       = "index.yaml"
-  source     = "./template/index.yaml"
-  bucket     = module.helmrepo.bucket.name
-  depends_on = [module.helmrepo]
+  name         = "index.yaml"
+  source       = "./template/index.yaml"
+  bucket       = module.helmrepo.bucket.name
+  kms_key_name = var.kms_key_name
+  depends_on   = [module.helmrepo]
 }

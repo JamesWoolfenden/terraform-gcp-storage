@@ -1,7 +1,11 @@
-resource "google_storage_bucket" "bucket" {
+resource "google_storage_bucket" "pike" {
   name     = var.bucket_name
   location = var.location
   project  = var.project
+
+  encryption {
+    default_kms_key_name = var.kms_key_name
+  }
 
   force_destroy = var.force_destroy
 
@@ -33,12 +37,19 @@ resource "google_storage_bucket" "bucket" {
     response_header = var.cors["response_header"]
   }
 
-  logging {
-    log_bucket = var.log_bucket
+  dynamic "logging" {
+    for_each = var.log_bucket != "" ? [var.log_bucket] : []
+    content {
+      log_bucket = logging.value
+    }
   }
 
-  requester_pays = false
+  requester_pays = var.requester_pays
 
   uniform_bucket_level_access = true
   public_access_prevention    = var.public
+
+  soft_delete_policy {
+    retention_duration_seconds = 604800
+  }
 }

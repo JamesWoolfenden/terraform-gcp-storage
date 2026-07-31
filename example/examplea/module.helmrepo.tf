@@ -8,4 +8,5 @@ module "helmrepo" {
   location        = var.location
   log_bucket      = google_storage_bucket.logging.name
   force_destroy   = true
+  kms_key_name    = var.kms_key_name
 }

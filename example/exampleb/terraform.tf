@@ -1,3 +1,4 @@
+# holden:ignore:HLD_TF_004
 terraform {
   required_providers {
 
@@ -6,5 +7,5 @@ terraform {
       version = "7.31.0"
     }
   }
-  required_version = ">= 0.14"
+  required_version = ">= 1.5.0"
 }

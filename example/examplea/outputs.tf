@@ -6,4 +6,5 @@ output "url" {
 output "bucket" {
   description = "All of the bucket info"
   value       = module.helmrepo.bucket
+  sensitive   = true
 }

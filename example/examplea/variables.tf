@@ -46,3 +46,13 @@ variable "binding_members" {
     error_message = "Each binding_member must be in the form '<type>:<identifier>' (for example: user:alice@example.com)"
   }
 }
+
+variable "kms_key_name" {
+  type        = string
+  description = "The name of the KMS key used to encrypt the bucket"
+  sensitive   = true
+  validation {
+    condition     = length(var.kms_key_name) > 0
+    error_message = "kms_key_name must not be empty"
+  }
+}
