@@ -17,5 +17,3 @@ jobs:
   # holden:ignore:HLD_CI_017: same-author reusable workflow (JamesWoolfenden/.github), intentionally tracked at @main to pick up fixes without per-repo SHA bumps
   verify:
     uses: JamesWoolfenden/.github/.github/workflows/terraform-verify-gcp.yml@main
-    with:
-      service_account: terraform-gcp-storage@pike-477416.iam.gserviceaccount.com

@@ -32,3 +32,4 @@ original/
 .external_modules
 twistcli
 .pike/
+/.terraform.lock.hcl

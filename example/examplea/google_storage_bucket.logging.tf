@@ -39,9 +39,6 @@ resource "google_storage_bucket" "access_logs" {
 # holden:ignore:HLD_GCP_003: This is a logging bucket
 # holden:ignore:HLD_GCP_004: audit log sink intentionally has no object versioning (matches checkov:skip=CKV_GCP_78 below)
 resource "google_storage_bucket" "logging" {
-  #checkov:skip=CKV_GCP_998:"It is only for logging"
-  #checkov:skip=CKV_GCP_62: "Bucket should log access"
-  #checkov:skip=CKV_GCP_78: Dont need versioning
   name     = "jgwloggingbucket"
   location = var.location
 
